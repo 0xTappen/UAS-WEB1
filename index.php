@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/config.php';
 
     $npm = trim($_POST['npm'] ?? '');
-    $passwordLogin = trim($_POST['password'] ?? '');
+    $namaLogin = trim($_POST['nama'] ?? '');
 
-    if ($npm === '' || $passwordLogin === '') {
-        $pesanError = 'NPM dan Password wajib diisi.';
+    if ($npm === '' || $namaLogin === '') {
+        $pesanError = 'NPM dan Nama wajib diisi.';
     } else {
-        $query = mysqli_prepare($koneksi, 'SELECT npm, nama FROM mahasiswa WHERE npm = ? AND password = ? LIMIT 1');
-        mysqli_stmt_bind_param($query, 'ss', $npm, $passwordLogin);
+        $query = mysqli_prepare($koneksi, 'SELECT npm, nama FROM mahasiswa WHERE npm = ? AND nama = ? LIMIT 1');
+        mysqli_stmt_bind_param($query, 'ss', $npm, $namaLogin);
         mysqli_stmt_execute($query);
         $hasil = mysqli_stmt_get_result($query);
         $mahasiswa = mysqli_fetch_assoc($hasil);
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        $pesanError = 'Login gagal. Pastikan NPM dan Password sesuai database.';
+        $pesanError = 'Login gagal. Pastikan NPM dan Nama sesuai database.';
     }
 }
 ?>
@@ -67,9 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
 
             <form method="post" autocomplete="off">
-                <input type="text" id="npm" name="npm" placeholder="Username" required autofocus>
+                <input type="text" id="npm" name="npm" placeholder="NPM" required autofocus>
 
-                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="text" id="nama" name="nama" placeholder="Nama" required>
 
                 <button type="submit">Log in</button>
             </form>

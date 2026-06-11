@@ -5,10 +5,10 @@ CREATE TABLE IF NOT EXISTS mahasiswa (
     id INT AUTO_INCREMENT PRIMARY KEY,
     npm VARCHAR(30) NOT NULL UNIQUE,
     nama VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL DEFAULT 'Tekno123@',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO mahasiswa (npm, nama, password) VALUES
-('24312093', 'Mahasiswa Teknokrat', 'Tekno123@')
+('24312092', 'Erwin Wijaya', 'Tekno123@')
 ON DUPLICATE KEY UPDATE nama = VALUES(nama), password = VALUES(password);

@@ -33,6 +33,6 @@ if (mysqli_num_rows($cekPassword) === 0) {
 
 mysqli_query($koneksi, "
     INSERT INTO mahasiswa (npm, nama, password)
-    VALUES ('24312093', 'Mahasiswa Teknokrat', 'Tekno123@')
+    VALUES ('24312092', 'Erwin Wijaya', 'Tekno123@')
     ON DUPLICATE KEY UPDATE nama = VALUES(nama), password = VALUES(password)
 ");

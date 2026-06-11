@@ -226,6 +226,14 @@ form button {
     font-size: 12px;
 }
 
+.guest-form {
+    margin: 0;
+}
+
+.guest-form .guest-button {
+    margin-top: 0;
+}
+
 .cookies-notice {
     margin-top: 10px;
     font-size: 11px;
@@ -481,6 +489,30 @@ nav a:hover {
     background: #edf0f4;
     font-size: 13px;
     font-weight: 700;
+}
+
+.dummy-profile {
+    position: relative;
+    color: transparent;
+}
+
+.dummy-profile::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #9aa3af;
+    transform: translateY(-5px);
+}
+
+.dummy-profile::after {
+    content: "";
+    position: absolute;
+    bottom: 7px;
+    width: 18px;
+    height: 9px;
+    border-radius: 12px 12px 7px 7px;
+    background: #9aa3af;
 }
 
 .chevron {

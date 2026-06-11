@@ -26,13 +26,32 @@ $namaBulan = [
     12 => 'December',
 ];
 
-$bulanSekarang = (int) date('n');
-$tahunSekarang = (int) date('Y');
-$tanggalSekarang = (int) date('j');
-$jumlahHari = (int) date('t');
-$hariPertama = (int) date('N', strtotime(date('Y-m-01')));
-$bulanSebelumnya = $bulanSekarang === 1 ? 12 : $bulanSekarang - 1;
-$bulanBerikutnya = $bulanSekarang === 12 ? 1 : $bulanSekarang + 1;
+$bulanHariIni = (int) date('n');
+$tahunHariIni = (int) date('Y');
+$tanggalHariIni = (int) date('j');
+
+$bulanSekarang = (int) ($_GET['bulan'] ?? $bulanHariIni);
+$tahunSekarang = (int) ($_GET['tahun'] ?? $tahunHariIni);
+
+if ($bulanSekarang < 1 || $bulanSekarang > 12) {
+    $bulanSekarang = $bulanHariIni;
+}
+
+if ($tahunSekarang < 1970 || $tahunSekarang > 2100) {
+    $tahunSekarang = $tahunHariIni;
+}
+
+$tanggalKalender = sprintf('%04d-%02d-01', $tahunSekarang, $bulanSekarang);
+$jumlahHari = (int) date('t', strtotime($tanggalKalender));
+$hariPertama = (int) date('N', strtotime($tanggalKalender));
+
+$tanggalSebelumnya = strtotime('-1 month', strtotime($tanggalKalender));
+$tanggalBerikutnya = strtotime('+1 month', strtotime($tanggalKalender));
+$bulanSebelumnya = (int) date('n', $tanggalSebelumnya);
+$tahunSebelumnya = (int) date('Y', $tanggalSebelumnya);
+$bulanBerikutnya = (int) date('n', $tanggalBerikutnya);
+$tahunBerikutnya = (int) date('Y', $tanggalBerikutnya);
+$sedangBulanIni = $bulanSekarang === $bulanHariIni && $tahunSekarang === $tahunHariIni;
 ?>
 <!doctype html>
 <html lang="id">
@@ -75,7 +94,7 @@ $bulanBerikutnya = $bulanSekarang === 12 ? 1 : $bulanSekarang + 1;
 
                     <div class="profile-menu" id="profileMenu">
                         <button type="button" id="profileButton" aria-expanded="false" aria-controls="profileDropdown">
-                            <span class="avatar">Jm</span>
+                            <span class="avatar dummy-profile" aria-label="Profile"></span>
                             <span class="chevron">v</span>
                         </button>
                         <div class="profile-dropdown" id="profileDropdown">
@@ -126,9 +145,9 @@ $bulanBerikutnya = $bulanSekarang === 12 ? 1 : $bulanSekarang + 1;
                     </div>
 
                     <div class="calendar-monthbar">
-                        <a href="#">&lt; <?php echo $namaBulan[$bulanSebelumnya]; ?></a>
+                        <a href="beranda.php?bulan=<?php echo $bulanSebelumnya; ?>&tahun=<?php echo $tahunSebelumnya; ?>">&lt; <?php echo $namaBulan[$bulanSebelumnya]; ?></a>
                         <h3><?php echo $namaBulan[$bulanSekarang] . ' ' . $tahunSekarang; ?></h3>
-                        <a href="#"><?php echo $namaBulan[$bulanBerikutnya]; ?> &gt;</a>
+                        <a href="beranda.php?bulan=<?php echo $bulanBerikutnya; ?>&tahun=<?php echo $tahunBerikutnya; ?>"><?php echo $namaBulan[$bulanBerikutnya]; ?> &gt;</a>
                     </div>
 
                     <div class="calendar-grid">
@@ -144,7 +163,7 @@ $bulanBerikutnya = $bulanSekarang === 12 ? 1 : $bulanSekarang + 1;
                             <div class="day empty"></div>
                         <?php endfor; ?>
                         <?php for ($tanggal = 1; $tanggal <= $jumlahHari; $tanggal++) : ?>
-                            <div class="day <?php echo $tanggal === $tanggalSekarang ? 'today' : ''; ?>">
+                            <div class="day <?php echo $sedangBulanIni && $tanggal === $tanggalHariIni ? 'today' : ''; ?>">
                                 <span><?php echo $tanggal; ?></span>
                             </div>
                         <?php endfor; ?>

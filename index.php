@@ -9,6 +9,14 @@ if (isset($_SESSION['npm'])) {
 $pesanError = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['guest'])) {
+        $_SESSION['npm'] = 'guest';
+        $_SESSION['nama'] = 'Guest User';
+        $_SESSION['guest'] = true;
+        header('Location: beranda.php');
+        exit;
+    }
+
     require __DIR__ . '/config.php';
 
     $npm = trim($_POST['npm'] ?? '');
@@ -26,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($mahasiswa) {
             $_SESSION['npm'] = $mahasiswa['npm'];
             $_SESSION['nama'] = $mahasiswa['nama'];
+            unset($_SESSION['guest']);
             header('Location: beranda.php');
             exit;
         }
@@ -65,7 +74,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit">Log in</button>
             </form>
             <a class="lost-password" href="#">Lost password?</a>
-            <button class="guest-button" type="button">Access as a guest</button>
+            <form method="post" class="guest-form">
+                <button class="guest-button" type="submit" name="guest" value="1">Access as a guest</button>
+            </form>
             <a class="cookies-notice" href="#">Cookies notice</a>
         </section>
     </main>

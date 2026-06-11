@@ -22,21 +22,22 @@ body {
 
 .login-page {
     display: grid;
-    place-items: center;
+    align-items: center;
+    justify-items: center;
     padding: 24px;
     background: #fff;
 }
 
 .login-shell {
-    width: min(100%, 420px);
+    width: min(100%, 430px);
 }
 
 .login-panel {
-    padding: 24px 32px 22px;
+    padding: 34px 34px 28px;
     border: 1px solid #c9ced6;
     border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.16);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.16);
 }
 
 .brand,
@@ -153,42 +154,32 @@ form button {
 
 .spada-login-panel form {
     display: grid;
-    gap: 10px;
+    gap: 8px;
 }
 
 .spada-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
+    display: block;
+    width: 300px;
+    height: auto;
+    margin: 0 0 16px;
+    overflow: visible;
 }
 
 .spada-brand img {
-    width: 56px;
-    height: 56px;
+    display: block;
+    width: 300px;
+    height: auto;
     object-fit: contain;
-}
-
-.spada-brand h1 {
-    margin: 0;
-    color: #e11d2e;
-    font-size: 19px;
-    line-height: 1.05;
-    text-transform: uppercase;
-}
-
-.spada-brand p {
-    margin: 5px 0 0;
-    color: #334e75;
-    font-size: 12px;
+    transform: none;
 }
 
 .spada-login-panel input {
-    height: 36px;
-    border: 1px solid #b7bec8;
+    height: 38px;
+    padding: 0 13px;
+    border: 1px solid #b8c0ca;
     border-radius: 6px;
-    color: #111827;
-    font-size: 14px;
+    color: #334155;
+    font-size: 13px;
 }
 
 .spada-login-panel input::placeholder {
@@ -196,17 +187,18 @@ form button {
 }
 
 .spada-login-panel button[type="submit"] {
-    min-height: 36px;
+    min-height: 38px;
     margin-top: 2px;
     border-radius: 6px;
-    background: #1858c9;
+    background: #1c55bd;
     font-size: 13px;
+    font-weight: 700;
 }
 
 .lost-password,
 .cookies-notice {
     display: block;
-    color: #174fb6;
+    color: #064fc0;
     font-size: 12px;
     font-weight: 700;
     text-align: center;
@@ -214,7 +206,7 @@ form button {
 }
 
 .lost-password {
-    margin: 12px 0 10px;
+    margin: 11px 0 10px;
 }
 
 .guest-button {
@@ -222,8 +214,9 @@ form button {
     min-height: 34px;
     border-radius: 6px;
     color: #475569;
-    background: #d3d8df;
+    background: #cfd5dd;
     font-size: 12px;
+    font-weight: 700;
 }
 
 .guest-form {
@@ -234,9 +227,67 @@ form button {
     margin-top: 0;
 }
 
+.spada-login-panel .guest-form .guest-button {
+    min-height: 34px;
+    color: #475569;
+    background: #cfd5dd;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.spada-login-panel .guest-form .guest-button:hover {
+    color: #475569;
+    background: #cfd5dd;
+}
+
 .cookies-notice {
     margin-top: 10px;
+    padding-right: 0;
     font-size: 11px;
+    text-align: right;
+}
+
+.cookies-notice::before {
+    content: "?";
+    display: inline-grid;
+    place-items: center;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    border-radius: 50%;
+    color: #fff;
+    background: #0b55c4;
+    font-size: 9px;
+    font-weight: 700;
+    vertical-align: 2px;
+}
+
+@media (max-width: 760px) {
+    .login-page {
+        padding: 24px 16px;
+    }
+
+    .login-panel {
+        padding: 32px 24px;
+    }
+
+    .spada-brand,
+    .spada-brand img {
+        width: min(100%, 300px);
+    }
+
+    .spada-login-panel input,
+    .spada-login-panel button[type="submit"] {
+        height: 38px;
+        min-height: 38px;
+        font-size: 13px;
+    }
+
+    .lost-password,
+    .cookies-notice,
+    .guest-button {
+        font-size: 12px;
+    }
 }
 
 .topbar {
@@ -698,11 +749,11 @@ nav a:hover {
     position: relative;
     z-index: 5;
     display: grid;
-    grid-template-columns: 410px 1fr auto;
+    grid-template-columns: 430px 1fr auto;
     align-items: center;
     gap: 20px;
     height: 80px;
-    padding: 0 28px;
+    padding: 0 32px;
     border-bottom: 1px solid #dfe3ea;
     background: #fff;
 }
@@ -710,11 +761,15 @@ nav a:hover {
 .dashboard-logo {
     gap: 9px;
     color: #e11d2e;
+    width: 380px;
 }
 
 .dashboard-logo img {
-    width: 36px;
-    height: 36px;
+    width: 360px;
+    height: auto;
+    max-height: 52px;
+    object-fit: contain;
+    object-position: left center;
 }
 
 .dashboard-logo strong {

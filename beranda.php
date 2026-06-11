@@ -66,11 +66,7 @@ $sedangBulanIni = $bulanSekarang === $bulanHariIni && $tahunSekarang === $tahunH
         <section class="dashboard-main">
             <header class="dashboard-topbar">
                 <a class="dashboard-logo" href="beranda.php">
-                    <img src="UNIVERSITASTEKNOKRAT.png" alt="Logo Universitas Teknokrat">
-                    <span>
-                        <strong>Universitas Teknokrat Indonesia</strong>
-                        <small>Sistem Pembelajaran Daring</small>
-                    </span>
+                    <img src="heading2020.png" alt="Logo Universitas Teknokrat">
                 </a>
 
                 <nav class="dashboard-nav">

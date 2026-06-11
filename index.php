@@ -55,11 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main class="login-shell">
         <section class="login-panel spada-login-panel">
             <div class="spada-brand">
-                <img src="UNIVERSITASTEKNOKRAT.png" alt="Sistem Pembelajaran dalam Jaringan">
-                <div>
-                    <h1>Universitas Teknokrat<br>Indonesia</h1>
-                    <p>Sistem Pembelajaran Daring</p>
-                </div>
+                <img src="heading2020.png" alt="Sistem Pembelajaran dalam Jaringan">
             </div>
 
             <?php if ($pesanError !== '') : ?>
@@ -67,9 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
 
             <form method="post" autocomplete="off">
-                <input type="text" id="npm" name="npm" placeholder="NPM" required autofocus>
+                <input type="text" id="npm" name="npm" placeholder="Username" required autofocus>
 
-                <input type="text" id="nama" name="nama" placeholder="Nama" required>
+                <input type="text" id="nama" name="nama" placeholder="Password" required>
 
                 <button type="submit">Log in</button>
             </form>
